@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Feeedback</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+        }
+        form {
+            width: 780px;
+            padding: 20px;
+            border: 7px solid #17034f;
+            border-radius: 10px;
+            background-color:#bbd6fa;
+            box-sizing: border-box;
+            box-shadow: 5px 5px 15px gray;
+            margin:20px;
+        }
+        label {
+            display: block;
+            margin-top: 5px;
+        }
+        input[type="text"]{
+ 
+            width: 95%;
+            padding: 8px;
+            margin-top: 2px;
+            border-radius: 5px;
+        }
+        .error {
+            color: red;
+            font-size: 14px;
+        }
+        button {
+            margin-top: 15px;
+            padding: 10px;
+            width: 50%;
+            box-sizing: border-box;
+            border-radius:8px;
+        }
+        button:hover{
+            background:#0056b3;
+        }
+    </style> 
+</head>
+<body class="bg-light">
+    <div class="container-fluid bg-primary text-white p-3">
+        <div class="row align-items-center">
+            <div class="col-md-4 d-flex align-items-center">
+                <img src="https://r3genhealth.com/wp-content/uploads/2024/03/Empowered-Wellness.png"
+                 alt="Hospital Logo" width="50" height="50"
+                    class="rounded-circle me-2">
+                <h2 class="mb-0">MediBridge Healthcare</h2>
+            </div>
+            <div class="col-md-8" style="text-align:right">
+                <a href="HealthCare.html" class="btn btn-dark">Back to Dashboard</a>
+            </div>
+        </div>
+    </div>
+<div class="container mt-5">
+    <form id="Form">
+            <h2 class="text-center">Feeedback Form</h2>
+            <label>Name:</label>
+            <input type="text" id="name" placeholder="Type"> <br>
+            <span class="error" id="nameError"></span>
+ 
+            <label>Email:</label>
+            <input type="text" id="email" placeholder="Type"> <br>
+            <span class="error" id="emailError"></span>
+ 
+            <label>Mobile Number:</label>
+            <input type="text" id="mobile" placeholder="Type"> <br>
+            <span class="error" id="mobileError"></span>
+ 
+            <label class="mt-3">Feature Used</label>
+        <select id="branch" class="form-select">
+            <option value="">Select Feature</option>
+            <option>Symptom Checker</option>
+            <option>Medicine Information</option>
+            <option>Drug Interaction Checker</option>
+            <option>Health News</option>
+            <option>Blood Donation</option>
+            <option>Doctor Profiles</option>
+            <option>Others</option>
+        </select>
+        
+
+            <label class="mt-3">How would you rate your experience?</label>
+        <select id="branch" class="form-select">
+            <option value="">Select Rating</option>
+            <option>1 Star</option>
+            <option>2 Star</option>
+            <option>3 Star</option>
+            <option>4 Star</option>
+            <option>5 Star</option>
+        </select>
+        
+            <label>Age:</label>
+            <input type="text" id="age" placeholder="Type"> <br>
+            <span class="error" id="ageError"></span>
+
+            <label>Was the information helpful?</label>
+            <label><input type="radio" name="category1" value="Yes" checked>Yes</label>
+            <label><input type="radio" name="category1" value="Partly">Partly</label>
+            <label><input type="radio" name="category1" value="No">No</label><br><br>
+
+            <label>what did you like most?</label>
+            <input type="text" id="like" placeholder="Type"> <br>
+            <span class="error" id="likeError"></span>
+
+            <label>Any suggestions for improvement?</label>
+            <input type="text" id="improve" placeholder="Type"> <br>
+            <span class="error" id="improveError"></span>
+
+            <label>Would you recommend MediBridge to others?</label>
+            <label><input type="radio" name="category2" value="Yes" checked>Yes</label>
+            <label><input type="radio" name="category2" value="Maybe">Maybe</label>
+            <label><input type="radio" name="category2" value="No">No</label><br><br>
+ 
+            <button type="submit">Submit Feeedback</button>
+ 
+    </form>
+</div>
+    <footer class="container-fluid bg-dark text-white text-center p-3">
+        <p class="mb-0">© 2026 MediBridge Healthcare | Healthy Life, Better Care</p>
+        <p>Image Credits: K+31 Clinic & Wellness (k31.ru), Freepik.</p>
+    </footer>
+<script>
+        document.getElementById("Form").addEventListener("submit", function (event) {
+            event.preventDefault();
+ 
+
+            // Clear previous errors
+            document.getElementById("nameError").innerHTML = "";
+            document.getElementById("emailError").innerHTML = "";
+            document.getElementById("mobileError").innerHTML = "";
+            document.getElementById("likeError").innerHTML = "";
+            document.getElementById("ageError").innerHTML = "";
+            document.getElementById("improveError").innerHTML = "";
+ 
+            let name = document.getElementById("name").value.trim();
+            let email = document.getElementById("email").value.trim();
+            let mobile = document.getElementById("mobile").value.trim();
+            let age = document.getElementById("age").value.trim();
+            let like = document.getElementById("like").value.trim();
+            let improve = document.getElementById("improve").value.trim();
+            let valid = true;
+ 
+ 
+            // Name Validation
+            if (name === ""||!isNaN(name)) {
+                document.getElementById("nameError").innerHTML =
+                    "Valid Name is required";
+                valid = false;
+            }
+ 
+            // Email Validation
+            let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email)) {
+                document.getElementById("emailError").innerHTML =
+                    "Enter a valid email";
+                valid = false;
+            }
+ 
+            // Mobile Validation
+            let mobilePattern = /^[0-9]{10}$/;
+            if (!mobilePattern.test(mobile)) {
+                document.getElementById("mobileError").innerHTML =
+                    "Enter a valid 10-digit mobile number";
+                valid = false;
+            }
+
+            // Age Validation
+            if (isNaN(age) || age < 18) {
+                document.getElementById("ageError").innerHTML =
+                    "Age must be at least 18";
+                valid = false;
+            }
+
+            // like Validation
+            if (like === "") {
+                document.getElementById("likeError").innerHTML =
+                    "This field is required";
+                valid = false;
+            }
+
+            // improve Validation
+            if (improve === "") {
+                document.getElementById("improveError").innerHTML =
+                    "This field is required";
+                valid = false;
+            }
+            if (valid) {
+                let patient = {
+                    name: name,
+                    email: email,
+                    mobile: mobile,
+                    age: age,
+                    like: like,
+                    improve: improve
+                };
+                localStorage.setItem(
+                    "studentData",
+                    JSON.stringify(patient)
+                );
+                alert("Submission Successful!");
+                document.getElementById("Form").reset();
+            }
+        });
+    </script>
+</body>
+</html>
+</body>
+</html>

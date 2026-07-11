@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Drug Interaction</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#f4f6f8;
+    margin:0;
+    padding:20px;
+}
+#box{
+    max-width:900px;
+    margin:auto;
+    background:#bbd6fa;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.1);
+    margin:20px;
+}
+h1{
+    text-align:center;
+}
+button{
+    background:#007bff;
+    color:white;
+    border:none;
+    cursor:pointer;
+    border-radius:8px;
+    width:100px;
+    font-size:20px;
+}
+button:hover{
+    background:#0056b3;
+}
+</style>
+</head>
+<body>
+    <div class="container-fluid bg-primary text-white p-3">
+        <div class="row align-items-center">
+            <div class="col-md-4 d-flex align-items-center">
+                <img src="https://r3genhealth.com/wp-content/uploads/2024/03/Empowered-Wellness.png"
+                 alt="Hospital Logo" width="50" height="50" class="rounded-circle me-2">
+                <h2 class="mb-0">MediBridge Healthcare</h2>
+            </div>
+            <div class="col-md-8" style="text-align:right">
+                <a href="HealthCare.html" class="btn btn-dark">Back to Dashboard</a>
+            </div>
+        </div>
+    </div>
+        <div id="box">
+            <h2 class="text-center">Drug Interaction Checker</h2><br>
+            <input type="text" id="searchbox" class="form-control" placeholder="Type To Search Medicine....."><br><br>
+            <ul id="dataList"></ul>
+        </div>
+    <footer class="container-fluid bg-dark text-white text-center p-3">
+        <p class="mb-0">© 2026 MediBridge Healthcare | Healthy Life, Better Care</p>
+        <p>Image Credits: K+31 Clinic & Wellness (k31.ru), Freepik.</p>
+    </footer>
+<script>
+let data = [];
+const listEl = document.getElementById("dataList");
+
+function renderList(items) {
+    listEl.innerHTML = "";
+    if (items.length === 0) {
+        listEl.innerHTML = "<li>No matching records found.</li>";
+        return;
+    }
+    items.forEach(item => {
+        const li = document.createElement("li");
+        li.textContent = item.medicine1 + " | " + item.medicine2 + " | " + item.result;
+        listEl.appendChild(li);
+    });
+}
+
+fetch("drug.json")
+.then(response => {
+    if (!response.ok) {
+        throw new Error("Unable to load JSON file");
+    }
+    return response.json();
+})
+.then(jsonData => {
+    data = jsonData;
+    renderList(data);
+})
+.catch(error => {
+    console.error(error);
+    listEl.innerHTML = "<li>Error loading JSON data</li>";
+});
+
+document.getElementById("searchbox").addEventListener("input", function () {
+    const query = this.value.trim().toLowerCase();
+    const filtered = data.filter(item =>
+        item.medicine1.toLowerCase().includes(query) ||
+        item.medicine2.toLowerCase().includes(query)
+);
+    renderList(filtered);
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+[
+  {
+    "medicine1": "Paracetamol",
+    "medicine2": "Ibuprofen",
+    "result": "Generally safe when taken together as advised by a doctor."
+  },
+  {
+    "medicine1": "Aspirin",
+    "medicine2": "Ibuprofen",
+    "result": "Avoid together as it may increase the risk of stomach bleeding."
+  },
+  {
+    "medicine1": "Cetirizine",
+    "medicine2": "Alcohol",
+    "result": "May increase drowsiness."
+  },
+  {
+    "medicine1": "Metformin",
+    "medicine2": "Alcohol",
+    "result": "May increase the risk of lactic acidosis."
+  },
+  {
+    "medicine1": "Warfarin",
+    "medicine2": "Aspirin",
+    "result": "High risk of bleeding. Consult a doctor."
+  }
+]
